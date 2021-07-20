@@ -100,6 +100,11 @@ impl OTP {
         (otp(self.algorithm, &self.secret, ctr), left)
     }
 
+    /// get the TOTP code for now
+    pub fn totp_at(&self, ctr: Counter) -> Token {
+        otp(self.algorithm, &self.secret, ctr)
+    }
+
     pub fn from_url(url: &url::Url) -> Result<Self, ()> {
         if url.scheme() != SCHEME {
             return Err(());
