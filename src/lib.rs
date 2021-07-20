@@ -47,10 +47,22 @@ impl Token {
     pub fn dec6(self) -> String {
         format!("{:06}", self.0 % 1_000_000)
     }
+    pub fn dec7(self) -> String {
+        format!("{:07}", self.0 % 10_000_000)
+    }
+    pub fn dec8(self) -> String {
+        format!("{:08}", self.0 % 100_000_000)
+    }
 
     pub fn match_code(self, digits: u32, code: u32) -> bool {
         let expected = self.0 % 10u32.pow(digits);
         expected == code
+    }
+}
+
+impl From<Period> for u32 {
+    fn from(p: Period) -> Self {
+        p.0
     }
 }
 
