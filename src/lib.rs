@@ -16,7 +16,7 @@ use std::str::FromStr;
 use std::time::{Duration, SystemTime};
 
 /// Algorithm for running HMAC
-#[derive(Clone, Debug, Copy, PartialEq, Eq, Hash)]
+#[derive(Clone, Debug, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum Algorithm {
     Sha1,
     Sha256,
@@ -24,7 +24,7 @@ pub enum Algorithm {
 }
 
 /// Period of time
-#[derive(Clone, Debug, Copy, PartialEq, Eq)]
+#[derive(Clone, Debug, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Period(u32);
 
 impl Period {
