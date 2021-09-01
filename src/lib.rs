@@ -207,6 +207,10 @@ impl Counter {
         Counter(counter)
     }
 
+    pub fn system_time(self, period: Period) -> SystemTime {
+        SystemTime::UNIX_EPOCH + Duration::from_secs(self.0 as u64 * period.0 as u64)
+    }
+
     pub fn totp_now(period: u32) -> Self {
         let secs = SystemTime::now()
             .duration_since(std::time::SystemTime::UNIX_EPOCH)
