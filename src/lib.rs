@@ -189,7 +189,7 @@ impl OTP {
 }
 
 /// Counter to use for otp
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Counter(u64);
 
 impl Counter {
