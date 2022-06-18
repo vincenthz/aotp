@@ -54,6 +54,16 @@ impl Token {
         format!("{:08}", self.0 % 100_000_000)
     }
 
+    pub fn u6(self) -> u32 {
+        self.0 % 1_000_000
+    }
+    pub fn u7(self) -> u32 {
+        self.0 % 10_000_000
+    }
+    pub fn u8(self) -> u32 {
+        self.0 % 100_000_000
+    }
+
     pub fn match_code(self, digits: u32, code: u32) -> bool {
         let expected = self.0 % 10u32.pow(digits);
         expected == code
@@ -201,6 +211,13 @@ impl Counter {
     /// Increase the counter to the next value
     pub const fn incr(self) -> Self {
         Counter(self.0 + 1)
+    }
+
+    /// Decrease the counter
+    ///
+    /// if the counter cannot be decreased (0 Counter), then it is
+    pub fn decr(self) -> Self {
+        Counter(self.0.saturating_sub(1))
     }
 
     pub const fn hotp(counter: u64) -> Self {
